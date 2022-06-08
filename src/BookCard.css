@@ -3,16 +3,19 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 0;
+  gap: 20px;
 }
 
 .book-card-details h5 {
   font-size: 16px;
   color: #393b3f;
+  line-height: 24px;
 }
 
 .book-card-details p {
   font-size: 13px;
   color: #60636a7c;
+  margin-top: 5px;
 }
 
 .book-card-action {

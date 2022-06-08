@@ -1,6 +1,7 @@
+import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
 
-function InputSection() {
+function InputSection({ books, setBooks }) {
   const submitButton = useRef();
   const [bookData, setBookData] = useState({
     title: "",
@@ -12,10 +13,10 @@ function InputSection() {
   });
 
   useEffect(() => {
-    submitButton.current.disabled = bookData.approve ? false : true;
+    submitButton.current.disabled = !bookData.approve;
   }, [bookData]);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const data = {
       id: Date.now(),
@@ -25,7 +26,31 @@ function InputSection() {
       date: `${bookData.month}, ${bookData.year}`,
     };
 
-    console.log(data);
+    try {
+      const res = await axios.post(
+        "https://my-json-server.typicode.com/agilmanf/gedebooks/books",
+        data
+      );
+
+      setBooks([...books, data]);
+      e.target.reset();
+      resetData();
+      // console.log(res);
+      alert("Adding New Book Success");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function resetData() {
+    setBookData({
+      title: "",
+      author: "",
+      month: "",
+      year: "",
+      synopsis: "",
+      approve: false,
+    });
   }
 
   return (
@@ -74,18 +99,18 @@ function InputSection() {
                 <option className="select-placeholder" value="month" disabled>
                   Month
                 </option>
-                <option value="january">January</option>
-                <option value="february">February</option>
-                <option value="march">March</option>
-                <option value="april">April</option>
-                <option value="may">May</option>
-                <option value="june">June</option>
-                <option value="july">July</option>
-                <option value="august">August</option>
-                <option value="september">September</option>
-                <option value="october">October</option>
-                <option value="november">November</option>
-                <option value="december">December</option>
+                <option value="Jan">January</option>
+                <option value="Feb">February</option>
+                <option value="Mar">March</option>
+                <option value="Apr">April</option>
+                <option value="May">May</option>
+                <option value="Jun">June</option>
+                <option value="Jul">July</option>
+                <option value="Aug">August</option>
+                <option value="Sep">September</option>
+                <option value="Oct">October</option>
+                <option value="Nov">November</option>
+                <option value="Dec">December</option>
               </select>
             </label>
             <label htmlFor="year">
@@ -102,18 +127,18 @@ function InputSection() {
                 <option className="select-placeholder" value="year" disabled>
                   Year
                 </option>
-                <option value="january">January</option>
-                <option value="february">February</option>
-                <option value="march">March</option>
-                <option value="april">April</option>
-                <option value="may">May</option>
-                <option value="june">June</option>
-                <option value="july">July</option>
-                <option value="august">August</option>
-                <option value="september">September</option>
-                <option value="october">October</option>
-                <option value="november">November</option>
-                <option value="december">December</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+                <option value="2019">2019</option>
+                <option value="2018">2018</option>
+                <option value="2017">2017</option>
+                <option value="2016">2016</option>
+                <option value="2015">2015</option>
+                <option value="2014">2014</option>
+                <option value="2013">2013</option>
+                <option value="2012">2012</option>
+                <option value="2011">2011</option>
               </select>
             </label>
           </div>
@@ -140,7 +165,7 @@ function InputSection() {
               setBookData({ ...bookData, approve: e.target.checked })
             }
           />
-          <span>Approve this book to be listed</span>
+          <span className="noselect">Approve this book to be listed</span>
         </label>
         <button ref={submitButton} type="submit" disabled>
           Submit
