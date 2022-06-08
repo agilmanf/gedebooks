@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "title": "The Maze Runner",
+    "author": "James Dashner",
+    "synopsis": "The Maze Runner Synopsis...",
+    "date": "Oct, 2009"
+  },
+  {
+    "id": 2,
+    "title": "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones",
+    "author": "James Clear",
+    "synopsis": "Book Synopsis...",
+    "date": "Oct, 2018"
+  }
+]
