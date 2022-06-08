@@ -1,5 +1,5 @@
-[
-  {
+{
+  "books" : [{
     "id": 1,
     "title": "The Maze Runner",
     "author": "James Dashner",
@@ -12,5 +12,5 @@
     "author": "James Clear",
     "synopsis": "Book Synopsis...",
     "date": "Oct, 2018"
-  }
-]
+  }]
+}
